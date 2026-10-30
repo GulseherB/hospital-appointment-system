@@ -7,6 +7,6 @@ abstract final class AppColors {
   static const surface = Colors.white;
   static const text = Color(0xFF1F2937);
   static const mutedText = Color(0xFF6B7280);
-  static const error = Color(0xFFB42318);
+  static const error = Color.fromARGB(255, 88, 12, 7);
   static const border = Color(0xFFE5E7EB);
 }
