@@ -19,9 +19,13 @@ class AvailabilityModel implements JsonModel {
   final DateTime endTime;
 
   bool includes(DateTime value) {
+    final valueMinutes = value.hour * 60 + value.minute;
+    final startMinutes = startTime.hour * 60 + startTime.minute;
+    final endMinutes = endTime.hour * 60 + endTime.minute;
+
     return value.weekday == dayOfWeek &&
-        !value.isBefore(startTime) &&
-        value.isBefore(endTime);
+        valueMinutes >= startMinutes &&
+        valueMinutes < endMinutes;
   }
 
   @override

@@ -4,7 +4,12 @@ enum UserRole {
   healthStaff,
   hospitalManager;
 
-  String get apiValue => name;
+  String get apiValue => switch (this) {
+    UserRole.patient => 'patient',
+    UserRole.doctor => 'doctor',
+    UserRole.healthStaff => 'health_staff',
+    UserRole.hospitalManager => 'hospital_manager',
+  };
 
   static UserRole fromApi(String value) {
     return UserRole.values.firstWhere(

@@ -10,8 +10,9 @@ class AppointmentModel implements JsonModel {
     required this.startsAt,
     required this.endsAt,
     required this.fee,
-    this.status = AppointmentStatus.pending,
-  }) : assert(endsAt.isAfter(startsAt), 'Appointment end must be after start');
+    AppointmentStatus status = AppointmentStatus.pending,
+  }) : _status = status,
+       assert(endsAt.isAfter(startsAt), 'Appointment end must be after start');
 
   final int id;
   final int patientId;
@@ -20,25 +21,25 @@ class AppointmentModel implements JsonModel {
   final DateTime startsAt;
   final DateTime endsAt;
   final double fee;
-  AppointmentStatus status;
+  AppointmentStatus _status;
+
+  AppointmentStatus get status => _status;
 
   void confirm() {
     _ensureChangeable();
-    status = AppointmentStatus.confirmed;
+    _status = AppointmentStatus.confirmed;
   }
 
   void cancel() {
-    if (status == AppointmentStatus.completed) {
-      throw StateError('A completed appointment cannot be cancelled');
-    }
-    status = AppointmentStatus.cancelled;
+    _ensureChangeable();
+    _status = AppointmentStatus.cancelled;
   }
 
   void complete() {
     if (status != AppointmentStatus.confirmed) {
       throw StateError('Only confirmed appointments can be completed');
     }
-    status = AppointmentStatus.completed;
+    _status = AppointmentStatus.completed;
   }
 
   bool overlaps(DateTime start, DateTime end) {
