@@ -10,13 +10,14 @@ import (
 func Migrate(db *gorm.DB) error {
 	if err := db.AutoMigrate(
 		&models.Hospital{},
-		&models.Branch{},
+		&models.WorkingHour{},
 		&models.Department{},
 		&models.User{},
 		&models.MedicalService{},
-		&models.WorkingHour{},
-		&models.Availability{},
+		&models.WorkSchedule{},
+		&models.TimeOff{},
 		&models.Appointment{},
+		&models.AppointmentStatusHistory{},
 	); err != nil {
 		return fmt.Errorf("migrate database: %w", err)
 	}
