@@ -1,10 +1,19 @@
 enum AppointmentStatus {
   pending,
   confirmed,
+  rejected,
   cancelled,
-  completed;
+  completed,
+  noShow;
 
-  String get apiValue => name;
+  String get apiValue => switch (this) {
+    AppointmentStatus.pending => 'pending',
+    AppointmentStatus.confirmed => 'confirmed',
+    AppointmentStatus.rejected => 'rejected',
+    AppointmentStatus.cancelled => 'cancelled',
+    AppointmentStatus.completed => 'completed',
+    AppointmentStatus.noShow => 'no_show',
+  };
 
   static AppointmentStatus fromApi(String value) {
     return AppointmentStatus.values.firstWhere(

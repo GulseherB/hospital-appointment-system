@@ -1,10 +1,12 @@
 enum UserRole {
+  superAdmin,
   patient,
   doctor,
   healthStaff,
   hospitalManager;
 
   String get apiValue => switch (this) {
+    UserRole.superAdmin => 'super_admin',
     UserRole.patient => 'patient',
     UserRole.doctor => 'doctor',
     UserRole.healthStaff => 'health_staff',

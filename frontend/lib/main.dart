@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+
+import 'app/app_scope.dart';
 import 'core/theme/app_theme.dart';
+import 'features/auth/login_page.dart';
 
 void main() {
   runApp(const AppointmentApp());
@@ -10,12 +13,12 @@ class AppointmentApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Hastane Randevu Sistemi',
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.light,
-      home: const Scaffold(
-        body: Center(child: Text('Hastane Randevu Sistemi')),
+    return AppScope.create(
+      child: MaterialApp(
+        title: 'Hastane Randevu Sistemi',
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.light,
+        home: const LoginPage(),
       ),
     );
   }
