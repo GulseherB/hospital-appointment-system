@@ -1,0 +1,22 @@
+# Gizli bilgiler
+.env
+*.env
+*.pem
+
+# Günlükler ve geçici dosyalar
+*.log
+tmp/
+
+# Go
+hospital__systm/backend/bin/
+*.exe
+
+# Flutter / Dart
+hospital__systm/frontend/build/
+hospital__systm/frontend/.dart_tool/
+hospital__systm/frontend/.flutter-plugins*
+hospital__systm/frontend/.packages
+
+# Editör ayarları
+.idea/
+.vscode/
